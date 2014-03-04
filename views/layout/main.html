@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{> head}}
+    <title></title>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+{{> navbar}}
+    <div class="container">
+        {{{ yield }}}
+    </div>
+{{> scripts}}
+</body>
+</html>
