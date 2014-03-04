@@ -7,13 +7,22 @@ routes = require("./routes")
 user = require("./routes/user")
 http = require("http")
 path = require("path")
+mongoose = require 'mongoose'
+
 app = express()
 app.set 'layout', 'layout/main'
+
+mongoose.connect 'mongodb://localhost/test'
+db = mongoose.connection
+db.on 'error', console.error.bind(console, 'connection error:')
+db.once 'open', ->
+  console.log 'DB connection opened'
 
 app.set 'partials',
   head: 'partials/head',
   navbar: 'partials/navbar',
   scripts: 'partials/scripts'
+  register: 'partials/register'
 # all environments
 app.set "port", process.env.PORT or 3000
 app.set "views", path.join(__dirname, "views")

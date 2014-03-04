@@ -5,7 +5,7 @@ Module dependencies.
  */
 
 (function() {
-  var app, express, http, path, routes, user;
+  var app, db, express, http, mongoose, path, routes, user;
 
   express = require("express");
 
@@ -17,14 +17,27 @@ Module dependencies.
 
   path = require("path");
 
+  mongoose = require('mongoose');
+
   app = express();
 
   app.set('layout', 'layout/main');
 
+  mongoose.connect('mongodb://localhost/test');
+
+  db = mongoose.connection;
+
+  db.on('error', console.error.bind(console, 'connection error:'));
+
+  db.once('open', function() {
+    return console.log('DB connection opened');
+  });
+
   app.set('partials', {
     head: 'partials/head',
     navbar: 'partials/navbar',
-    scripts: 'partials/scripts'
+    scripts: 'partials/scripts',
+    register: 'partials/register'
   });
 
   app.set("port", process.env.PORT || 3000);
