@@ -22,7 +22,8 @@ app.set 'partials',
   head: 'partials/head',
   navbar: 'partials/navbar',
   scripts: 'partials/scripts'
-  register: 'partials/register'
+  upload: 'partials/upload'
+  graphs: 'partials/graphs'
 # all environments
 app.set "port", process.env.PORT or 3000
 app.set "views", path.join(__dirname, "views")
@@ -42,8 +43,6 @@ app.configure ->
   app.use express.static(path.join(__dirname, "public"))
   app.use express.static(path.join(__dirname, 'bower_components'))
 
-
-# development only
 app.use express.errorHandler()  if "development" is app.get("env")
 app.get "/", routes.index
 app.get "/users", user.list

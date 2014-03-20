@@ -1,0 +1,22 @@
+    <form>
+    <label for="uploadedFile">Upload your model: </label>
+    <input id="uploadedFile" onchange='openFile(event)' type="file" name="fileField" multiple><br />
+
+    <input id="submitButton" type="button" name="submit" value="Submit">
+    </form>
+<p id="output"></p>
+<script>
+    var openFile = function(event) {
+        var input = event.target;
+
+        var reader = new FileReader();
+        reader.onload = function(event){
+            var dataURL = event.target.result;
+            var output = document.getElementById('output');
+            output.src = dataURL;
+
+        };
+        reader.readAsText(input.files[0]);
+    };
+
+</script>

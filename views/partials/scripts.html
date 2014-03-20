@@ -2,3 +2,18 @@
 <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/underscore/underscore.js"></script>
 <script src="/backbone/backbone.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#myfirstchart").hide();
+        $("#mysecondchart").hide();
+        $("#mythirdchart").hide();
+
+        $("#submitButton").click(function() {
+            $("#myfirstchart").fadeIn("slow");
+            $("#mysecondchart").fadeIn("slow");
+            $("#mythirdchart").fadeIn("slow");
+
+        })
+    })
+</script>

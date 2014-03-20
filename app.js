@@ -37,7 +37,8 @@ Module dependencies.
     head: 'partials/head',
     navbar: 'partials/navbar',
     scripts: 'partials/scripts',
-    register: 'partials/register'
+    upload: 'partials/upload',
+    graphs: 'partials/graphs'
   });
 
   app.set("port", process.env.PORT || 3000);

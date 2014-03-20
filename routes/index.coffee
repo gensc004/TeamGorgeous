@@ -4,6 +4,6 @@
 #
 exports.index = (req, res) ->
     res.render "index",
-    title: "Lightside Set-Up"
-    description : "This is our project base"
+    title: "Visualize the Light Side"
+    description : ""
 return
