@@ -7,5 +7,3 @@
   return;
 
 }).call(this);
-
-//# sourceMappingURL=user.map
