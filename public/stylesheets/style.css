@@ -6,6 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
-div {
-    border: dotted;
+
+#description {
+    font-size: 25px;
 }

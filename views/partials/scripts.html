@@ -3,24 +3,92 @@
 <script src="/underscore/underscore.js"></script>
 <script src="/backbone/backbone.js"></script>
 
+
+
+
+
 <script>
-    $(document).ready(function() {
-        $("#myfirstchart").hide();
-        $("#mysecondchart").hide();
-        $("#mythirdchart").hide();
+    window.onload = function() {
+        var fileInput = document.getElementById('fileInput');
+        var fileDisplayArea = document.getElementById('fileDisplayArea');
 
-        $("#submitButton").click(function() {
-            $("#myfirstchart").fadeIn("slow");
-            $("#mysecondchart").fadeIn("slow");
-            $("#mythirdchart").fadeIn("slow");
-            var text = document.getElementById("uploadedFile").value;
-            alert(text);
+        fileInput.addEventListener('change', function(e) {
+            var file = fileInput.files[0];
+            var textType = /text.*/;
 
-        })
+            if (file.type.match(textType)) {
+                var reader = new FileReader();
 
-        $('#uploadedFile').change(function() {
+                reader.onload = function(e) {
+                    checkCsv(reader.result);
+                }
 
+                reader.readAsText(file);
+            } else {
+                alert("File not supported!");
+            }
 
-        })
-    })
+        });
+    }
+    function checkCsv(text) {
+        var array = new Array();
+        var endPoint = 0;
+        while (text.search('\r') != -1) {
+                endPoint = text.search('\r');
+                array.push(text.slice(0, endPoint));
+                text = text.slice(endPoint + 1, text.length);
+           }
+
+        array.push(text);
+        var i = 0;
+        var grades = new Array();
+        grades[0] = 0;
+        grades[1] = 0;
+        grades[2] = 0;
+        grades[3] = 0;
+        while (i < array.length) {
+            grades[getGrade(array[i])]++;
+            i++;
+        }
+
+        Morris.Donut({
+            element: 'myfirstchart',
+            data: [
+                {label: "Number of 0 papers: ", value: grades[0]},
+                {label: "Number of 1 papers: ", value: grades[1]},
+                {label: "Number of 2 papers: ", value: grades[2]},
+                {label: "Number of 3 papers: ", value: grades[3]}
+            ],
+            labelColor: 'black',
+            colors: [
+                '#CB5DF5',
+                '#8451FF',
+                '#6375E8',
+                '#60B8FF'
+            ]
+        });
+        document.getElementById("description").innerHTML = "This is the distribution of grades you submitted in your csv. Here is what we think. " +
+                "Now make a model or remake your csv!";
+        $('#buttons').show();
+
+      }
+
+    function getGrade(text) {
+        var txt=text;
+
+        var re1='.*?';	// Non-greedy match on filler
+        var re2='\\d+';	// Uninteresting: int
+        var re3='.*?';	// Non-greedy match on filler
+        var re4='\\d+';	// Uninteresting: int
+        var re5='.*?';	// Non-greedy match on filler
+        var re6='(\\d+)';	// Integer Number 1
+
+        var p = new RegExp(re1+re2+re3+re4+re5+re6,["i"]);
+        var m = p.exec(txt);
+        if (m != null)
+        {
+            var int1=m[1];
+            return int1;
+        }
+    }
 </script>

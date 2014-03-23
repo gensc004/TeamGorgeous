@@ -11,10 +11,12 @@
         {{{ yield }}}
         {{> upload }}
     </div>
-<div id="myfirstchart" style="height: 250px;"></div>
-<div id="mysecondchart" style="height: 250px;"></div>
-<div id="mythirdchart" style="height: 250px;"></div>
-
+<div class="center-block" id="myfirstchart"  style="height: 20%; width: 20%"></div>
+<p class="text-center" id="description"></p>
+<div id="buttons" hidden="hidden">
+    <button class="center-block btn btn-success btn-large"> Create Model</button>
+    <button class="center-block btn btn-danger btn-large"> Make new csv</button>
+</div>
 
 {{> register}}
 {{> scripts}}

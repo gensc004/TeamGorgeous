@@ -4,6 +4,6 @@
 #
 exports.index = (req, res) ->
     res.render "index",
-    title: "Visualize the Light Side"
+    title: "Check csv"
     description : ""
 return

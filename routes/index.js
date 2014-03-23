@@ -2,7 +2,7 @@
 (function() {
   exports.index = function(req, res) {
     return res.render("index", {
-      title: "Visualize the Light Side",
+      title: "Check csv",
       description: ""
     });
   };
@@ -10,3 +10,5 @@
   return;
 
 }).call(this);
+
+//# sourceMappingURL=index.map
